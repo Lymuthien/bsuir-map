@@ -182,7 +182,7 @@ class CalculatorEngine {
     private fun evaluateOrNull(expression: String): BigDecimal? {
         return try {
             val tokens = tokenize(expression) ?: return null
-            val rpn = toRpn(tokens) ?: return null
+            val rpn = toRpn(tokens)
             evalRpn(rpn)
         } catch (_: ArithmeticException) {
             null

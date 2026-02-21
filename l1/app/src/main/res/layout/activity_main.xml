@@ -5,15 +5,316 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvExpression"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:ellipsize="start"
+        android:maxLines="1"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="14sp"
+        android:gravity="end"
+        tools:text="12.5*3-7/2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDisplay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="start"
+        android:maxLines="1"
+        android:text="0"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvExpression"
+        app:layout_constraintBottom_toTopOf="@id/gridContainer"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/gridContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tvDisplay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- vertical guides (4 columns) -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/v25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/v50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/v75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <!-- horizontal guides (5 rows) -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/h20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/h40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.40" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/h60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.60" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/h80"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.80" />
+
+        <!-- Row 1 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClear"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="C"
+            app:layout_constraintBottom_toTopOf="@id/h20"
+            app:layout_constraintEnd_toStartOf="@id/v25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSign"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="±"
+            app:layout_constraintBottom_toTopOf="@id/h20"
+            app:layout_constraintEnd_toStartOf="@id/v50"
+            app:layout_constraintStart_toStartOf="@id/v25"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="DEL"
+            app:layout_constraintStart_toStartOf="@id/v50"
+            app:layout_constraintEnd_toStartOf="@id/v75"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/h20" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDiv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="÷"
+            app:layout_constraintStart_toStartOf="@id/v75"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/h20" />
+
+        <!-- Row 2 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/v25"
+            app:layout_constraintTop_toTopOf="@id/h20"
+            app:layout_constraintBottom_toTopOf="@id/h40" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="8"
+            app:layout_constraintStart_toStartOf="@id/v25"
+            app:layout_constraintEnd_toStartOf="@id/v50"
+            app:layout_constraintTop_toTopOf="@id/h20"
+            app:layout_constraintBottom_toTopOf="@id/h40" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="9"
+            app:layout_constraintStart_toStartOf="@id/v50"
+            app:layout_constraintEnd_toStartOf="@id/v75"
+            app:layout_constraintTop_toTopOf="@id/h20"
+            app:layout_constraintBottom_toTopOf="@id/h40" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMul"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="×"
+            app:layout_constraintStart_toStartOf="@id/v75"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/h20"
+            app:layout_constraintBottom_toTopOf="@id/h40" />
+
+        <!-- Row 3 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/v25"
+            app:layout_constraintTop_toTopOf="@id/h40"
+            app:layout_constraintBottom_toTopOf="@id/h60" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="5"
+            app:layout_constraintStart_toStartOf="@id/v25"
+            app:layout_constraintEnd_toStartOf="@id/v50"
+            app:layout_constraintTop_toTopOf="@id/h40"
+            app:layout_constraintBottom_toTopOf="@id/h60" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="6"
+            app:layout_constraintStart_toStartOf="@id/v50"
+            app:layout_constraintEnd_toStartOf="@id/v75"
+            app:layout_constraintTop_toTopOf="@id/h40"
+            app:layout_constraintBottom_toTopOf="@id/h60" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSub"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="-"
+            app:layout_constraintStart_toStartOf="@id/v75"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/h40"
+            app:layout_constraintBottom_toTopOf="@id/h60" />
+
+        <!-- Row 4 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/v25"
+            app:layout_constraintTop_toTopOf="@id/h60"
+            app:layout_constraintBottom_toTopOf="@id/h80" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="2"
+            app:layout_constraintStart_toStartOf="@id/v25"
+            app:layout_constraintEnd_toStartOf="@id/v50"
+            app:layout_constraintTop_toTopOf="@id/h60"
+            app:layout_constraintBottom_toTopOf="@id/h80" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="3"
+            app:layout_constraintStart_toStartOf="@id/v50"
+            app:layout_constraintEnd_toStartOf="@id/v75"
+            app:layout_constraintTop_toTopOf="@id/h60"
+            app:layout_constraintBottom_toTopOf="@id/h80" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAdd"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="+"
+            app:layout_constraintStart_toStartOf="@id/v75"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/h60"
+            app:layout_constraintBottom_toTopOf="@id/h80" />
+
+        <!-- Row 5 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/v50"
+            app:layout_constraintTop_toTopOf="@id/h80"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDot"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="."
+            app:layout_constraintStart_toStartOf="@id/v50"
+            app:layout_constraintEnd_toStartOf="@id/v75"
+            app:layout_constraintTop_toTopOf="@id/h80"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEq"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:text="="
+            app:layout_constraintStart_toStartOf="@id/v75"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/h80"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
