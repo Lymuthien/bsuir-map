@@ -6,4 +6,14 @@
     </style>
 
     <style name="Theme.Lab1" parent="Base.Theme.Lab1" />
+
+    <!-- Splash theme -->
+    <style name="Theme.Lab1.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.Lab1</item>
+
+        <!-- pre-Android 12 fallback -->
+        <item name="android:windowBackground">@color/splash_background</item>
+    </style>
 </resources>
