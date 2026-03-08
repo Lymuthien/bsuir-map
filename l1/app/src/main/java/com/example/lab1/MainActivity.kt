@@ -1,6 +1,11 @@
 package com.example.lab1
 
 import android.os.Bundle
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
+import android.widget.Toast
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +36,21 @@ class MainActivity : AppCompatActivity() {
             val s = engine.state()
             tvExpression.text = s.expression
             tvDisplay.text = s.display
+        }
+
+        tvDisplay.setOnClickListener {
+            val value = engine.state().display
+            if (value.isNotBlank() && value != "Error") {
+                val sendIntent = Intent(Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_TEXT, value)
+                }
+                val chooser = Intent.createChooser(
+                    sendIntent,
+                    getString(R.string.share_result_via)
+                )
+                startActivity(chooser)
+            }
         }
 
         fun bindDigit(id: Int, d: Char) {

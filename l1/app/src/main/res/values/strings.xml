@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Lab1</string>
+    <string name="share_result_via">Share result via…</string>
 </resources>
