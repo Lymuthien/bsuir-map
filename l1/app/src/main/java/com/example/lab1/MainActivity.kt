@@ -53,6 +53,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        tvDisplay.setOnLongClickListener {
+            val value = engine.state().display
+            if (value.isNotBlank() && value != "Error") {
+                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clip = ClipData.newPlainText(getString(R.string.clipboard_label_result), value)
+                clipboard.setPrimaryClip(clip)
+                Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+            }
+            true
+        }
+
         fun bindDigit(id: Int, d: Char) {
             findViewById<MaterialButton>(id).setOnClickListener {
                 engine.inputDigit(d)
